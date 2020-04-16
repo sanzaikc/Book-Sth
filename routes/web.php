@@ -20,6 +20,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/index', function(){
-    return view('threads.index');
-});
+
+Route::resource('/threads', 'ThreadController');

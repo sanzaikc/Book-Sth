@@ -76,8 +76,14 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
+        <main class="container mx-auto flex px-4 mt-4">
+
+            <div class="w-64">
+                @include('_navigation')
+            </div>
+            <div class="mx-4 w-full">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>
