@@ -3,7 +3,7 @@
     <div class="my-2 px-3 py-3 rounded-lg hover:bg-gray-100">
         <div class="flex mb-1" >
             <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full w-8" >
-            <a href="#" class="ml-2 text-xl font-bold no-underline"> {{ $thread->title }} </a>
+            <a href="{{ route('threads.show', $thread) }}" class="ml-2 text-xl font-bold no-underline"> {{ $thread->title }} </a>
             </div>
             <div class="text-gray-500">
                 asked {{ $thread->created_at }} by 

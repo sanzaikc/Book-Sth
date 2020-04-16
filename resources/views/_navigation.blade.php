@@ -13,7 +13,7 @@
         </a>
     </li>
     <li class="px-4 py-2 mb-1 rounded-lg hover:bg-white hover:text-blue-500 {{ Request::path() ==='threads' ? 'bg-white text-blue-500' :'' }} " :class="{ 'bg-gray-200': tab === 'allQuestion' }" x-on:click="tab = 'allQuestion'">
-        <a href="">
+        <a href="/threads">
             <span class="bg-blue-500 rounded-lg text-white px-1">0</span>
             <span class="ml-3"> Forum </span>
         </a>

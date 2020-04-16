@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Thread;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreThread;
+
 
 class ThreadController extends Controller
 {
+
+    // public function __construct(){
+    //     $this->middleware('auth', ['except'=> ['index', 'show']]);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +22,13 @@ class ThreadController extends Controller
     public function index()
     {
         $allThreads = Thread::latest()->paginate(10);
-        // $userThreads = Thread::where('user_id', auth()->user()->id);
-        return view('threads.index', compact('allThreads'));
+        
+        if(Auth::check()){
+            $userThreads = Thread::where('user_id', auth()->user()->id)->latest()->paginate(10);
+        }else{
+            $userThreads = "";
+        }
+        return view('threads.index', compact('allThreads', 'userThreads'));
     }
 
     /**
@@ -35,9 +47,11 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreThread $request)
     {
-        //
+        $request->user()->threads()->create($request->all());
+
+        return back();
     }
 
     /**
@@ -48,7 +62,9 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        //
+        $thread = Thread::findOrFail($thread->id);
+
+        return view('threads.show', compact('thread'));
     }
 
     /**
