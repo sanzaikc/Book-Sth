@@ -11,9 +11,9 @@ use App\Http\Requests\StoreThread;
 class ThreadController extends Controller
 {
 
-    // public function __construct(){
-    //     $this->middleware('auth', ['except'=> ['index', 'show']]);
-    // }
+    public function __construct(){
+        $this->middleware('auth', ['except'=> ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -98,6 +98,11 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
-        //
+        if(auth()->user()->cant('delete', $thread)){
+            abort(401);
+        }else{
+            $thread->delete();
+            return redirect()->route('threads.index');
+        }
     }
 }

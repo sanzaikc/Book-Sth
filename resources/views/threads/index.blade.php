@@ -19,29 +19,29 @@
                 @click.away="open = false"
             >
                 {{-- ask question form  --}}
-                <form action="{{ route('threads.store') }}" method="post" class="flex flex-col items-end bg-gray-200 rounded-lg p-3">
+                <form action="{{ route('threads.store') }}" method="post" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
                     @csrf
                     <input name="title" type="text" class="w-full rounded-lg px-4 py-2" placeholder="Title of your query..">
-                    <textarea name="body" class="w-full rounded-lg mt-3 p-4" placeholder="Describe your query.."></textarea>
-                    <div class="mt-3 text-sm">
-                        <button 
-                            type="submit" 
-                            class="bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-3 py-1  hover:bg-blue-400"
-                            > Submit 
-                        </button>
+                    <textarea name="body" class="w-full rounded-lg mt-2 p-4" placeholder="Describe your query.."></textarea>
+                    <div class="mt-2 text-sm">
                         <button 
                             type="button" 
-                            class="bg-gray-200 rounded-full focus:outline-none px-3 py-1 ml-2 shadow-sm  hover:bg-gray-300" 
+                            class="bg-white rounded-full focus:outline-none px-3 py-1 shadow-sm hover:bg-gray-300" 
                             x-on:click="open = false"
                             > Cancel 
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-3 py-1 ml-2 hover:bg-blue-400"
+                            > Submit 
                         </button>
                     </div>
                 </form>
             </div>
         </div>
 
+        {{-- question toggle buttons --}}
         <div class="my-4 bg-white rounded-lg ">
-            {{-- question toggle buttons --}}
            <div class="flex">
                 <button 
                     class="flex-1 text-xl bg-gray-100 rounded-b-lg" 
@@ -53,7 +53,7 @@
                     class="flex-1 text-xl bg-gray-100 rounded-b-lg" 
                     x-bind:class="{'bg-white inline-block rounded-t py-1 px-4 text-blue-500 font-semibold focus:outline-none': tab === 'users' }" 
                     x-on:click="tab = 'users'"
-                    >My Question
+                    >My Questions
                 </button>
            </div>
 
