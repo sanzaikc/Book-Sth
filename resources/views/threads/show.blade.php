@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="bg-white rounded-lg px-4 py-8">
+
         {{-- thread section --}}
-        <div class="thread" x-data="{ open: false }">
+        <div class="thread" x-data="{ open: false , modal: false }">
+            {{-- edit/delete  --}}
             <div class="flex justify-between">
                 <h2 class="font-semibold text-3xl"> {{ $thread->title }} </h2>
                 @can('update', $thread)
@@ -13,10 +15,49 @@
                             @method('DELETE')
                             <input type="submit" class="bg-red-500 text-white rounded-full shadow-sm focus:outline-none px-2 hover:bg-red-400" onclick="confirm('Are you sure you want to delete?')" value="Delete">
                         </form>
-                        <button class="bg-blue-500 text-white rounded-full shadow-sm focus:outline-none px-2 ml-2 hover:bg-blue-400">Edit</a >
+                        <button 
+                            class="bg-blue-500 text-white rounded-full shadow-sm focus:outline-none px-2 ml-2 hover:bg-blue-400"
+                            x-on:click="modal = true"
+                            >Edit
+                        </button >
                     </div>     
                 @endcan
+            </div>
+
+            <div x-show="modal">
+                <div
+                    style="background-color: rgba(0, 0, 0, .5);"
+                    class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
+                >
+                    <div class="container mx-auto w-1/2 lg:px-32 rounded-lg overflow-y-auto">
+                        <div class="bg-white rounded">
+                            <div class="modal-body">
+                                <h2 class="text-2xl font-semibold mb-2">Edit your Thread</h2>
+                                <form action="{{ route('threads.update', $thread) }}" method="post" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
+                                    @csrf
+                                    @method('PUT')
+                                    <input name="title" type="text" class="w-full rounded-lg px-4 py-2" placeholder="Title of your query.." value=" {{ old('title', $thread->title) }}">
+                                    <textarea name="body" class="w-full rounded-lg mt-2 p-4" placeholder="Describe your query.."> {{ old('title', $thread->body) }} </textarea>
+                                    <div class="mt-2 text-sm">
+                                        <button 
+                                            type="button" 
+                                            class="bg-white rounded-full focus:outline-none px-3 py-1 shadow-sm hover:bg-gray-300" 
+                                            x-on:click="modal = false"
+                                            > Cancel 
+                                        </button>
+                                        <button 
+                                            type="submit" 
+                                            class="bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-3 py-1 ml-2 hover:bg-blue-400"
+                                            > Submit 
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+
             <div class="flex mt-4">
                 <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full w-10" >
                 <div class="ml-3">

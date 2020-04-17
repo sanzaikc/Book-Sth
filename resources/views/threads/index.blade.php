@@ -6,7 +6,8 @@
         {{-- ask question toggle  --}}
         <div class="" x-data="{ open: false }">
             <div class="flex justify-between">
-                <h2 class="text-3xl font-semibold">Discussion Forum</h2>
+                <h2 class="text-3xl font-semibold">Discussion Forum</h2> 
+                <i class="fa fa-user"></i>
                 <button 
                     class="bg-blue-500 rounded-full text-white text-sm focus:outline-none px-3 shadow-sm hover:bg-blue-400"
                     x-on:click="open = true"

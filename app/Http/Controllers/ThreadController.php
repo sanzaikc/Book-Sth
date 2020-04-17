@@ -85,9 +85,14 @@ class ThreadController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Thread $thread)
+    public function update(StoreTHread $request, Thread $thread)
     {
-        //
+        if(auth()->user()->cant('update', $thread)){
+            abort(401);
+        }else{
+            $thread->update($request->only('title','body'));
+            return back();
+        }
     }
 
     /**
