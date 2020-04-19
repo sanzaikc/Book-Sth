@@ -21,14 +21,10 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $allThreads = Thread::latest()->paginate(10);
+        $threads = Thread::latest()->paginate(10);
         
-        if(Auth::check()){
-            $userThreads = Thread::where('user_id', auth()->user()->id)->latest()->paginate(10);
-        }else{
-            $userThreads = "";
-        }
-        return view('threads.index', compact('allThreads', 'userThreads'));
+        
+        return view('threads.index', compact('threads'));
     }
 
     /**
@@ -51,7 +47,7 @@ class ThreadController extends Controller
     {
         $request->user()->threads()->create($request->all());
 
-        return back();
+        return back()->with('toast_success', 'Thread Created Successfully!');
     }
 
     /**
@@ -91,7 +87,7 @@ class ThreadController extends Controller
             abort(401);
         }else{
             $thread->update($request->only('title','body'));
-            return back();
+            return back()->with('toast_info', 'Thread Updated Successfully!');
         }
     }
 
@@ -107,7 +103,7 @@ class ThreadController extends Controller
             abort(401);
         }else{
             $thread->delete();
-            return redirect()->route('threads.index');
+            return redirect()->route('threads.index')->with('toast_info', 'Thread Deleted Successfully!');
         }
     }
 }

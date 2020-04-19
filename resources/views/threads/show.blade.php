@@ -13,10 +13,10 @@
                         <form class="form-delete" action=" {{ route('threads.destroy', $thread) }} " method="post">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" class="bg-red-500 text-white rounded-full shadow-sm focus:outline-none px-2 hover:bg-red-400" onclick="confirm('Are you sure you want to delete?')" value="Delete">
+                            <input type="submit" class="bg-red-500 text-white rounded-full shadow-sm focus:outline-none px-3 py-1 hover:bg-red-400" onclick="confirm('Are you sure you want to delete?')" value="Delete">
                         </form>
                         <button 
-                            class="bg-blue-500 text-white rounded-full shadow-sm focus:outline-none px-2 ml-2 hover:bg-blue-400"
+                            class="bg-blue-500 text-white rounded-full shadow-sm focus:outline-none px-3 py-1 ml-2 hover:bg-blue-400"
                             x-on:click="modal = true"
                             >Edit
                         </button >
@@ -24,12 +24,13 @@
                 @endcan
             </div>
 
+            {{-- edit modal  --}}
             <div x-show="modal">
                 <div
                     style="background-color: rgba(0, 0, 0, .5);"
                     class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
                 >
-                    <div class="container mx-auto w-1/2 lg:px-32 rounded-lg overflow-y-auto">
+                    <div class="container mx-auto w-1/2  rounded-lg overflow-y-auto">
                         <div class="bg-white rounded">
                             <div class="modal-body">
                                 <h2 class="text-2xl font-semibold mb-2">Edit your Thread</h2>
@@ -57,23 +58,25 @@
                     </div>
                 </div>
             </div>
-
+            
+            {{-- thread detail   --}}
             <div class="flex mt-4">
-                <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full w-10" >
+                <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full  w-10 h-10"  >
                 <div class="ml-3">
-                    <h2 class="font-semibold"> {{ $thread->user->name }} </h2>
+                    <h2 class="font-semibold text-xl"> {{ $thread->user->name }} </h2>
                     <p class="text-gray-500"> {{ $thread->created_at }} </p>
                 </div>
             </div>
 
-            <p class="mt-6"> {{ $thread->body }} </p>
+            <p class="mt-6 rounded bg-gray-100 p-2"> {{ $thread->body }} </p>
 
-            <div class="flex items-center mt-8">
-                <span>Like icon</span>
-                <span class="ml-3 font-semibold"> 10 likes </span>s
+            {{-- leave a reply  --}}
+            <div class="flex items-center mt-6">
+                <span class="flaticon-like text-blue-500 font-bold"></span>
+                <span class="ml-3 font-semibold "> 10 likes </span>
                 <button 
                     type="button" 
-                    class="ml-3 bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-2  hover:bg-blue-400"
+                    class="ml-3 bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-2 py-1   hover:bg-blue-400"
                     x-on:click="open = true"
                     > Leave a reply
                 </button>
@@ -108,12 +111,12 @@
             <hr>
             @for ($i = 0; $i < 4; $i++)
             <div class="my-4">
-                <div class="flex">
-                    <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-green-500 rounded-full w-12" >
+                <div class="flex items-center">
+                    <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full w-10 h-10" >
                     <div class="ml-3">
                         <div class="flex items-center">
-                            <h2 class="font-semibold">Another Name</h2>
-                            <span class="ml-3 text-green-500 bg-green-100 text-sm rounded-full px-2 py-1"> Best Reply </span>
+                            <h2 class="font-semibold text-xl">Another Name</h2>
+                            <span class="ml-3 text-green-500 bg-green-100 text-sm font-semibold rounded-full px-2 flex items-center "><span class="flaticon-best mr-2"></span> Best Reply </span>
                         </div>
                         <p class="text-gray-500">2 days ago</p>
                     </div>

@@ -9,11 +9,12 @@
                 <h2 class="text-3xl font-semibold">Discussion Forum</h2> 
                 <i class="fa fa-user"></i>
                 <button 
-                    class="bg-blue-500 rounded-full text-white text-sm focus:outline-none px-3 shadow-sm hover:bg-blue-400"
+                    class="bg-blue-500 rounded-full text-white text-sm focus:outline-none px-3 shadow-sm     hover:bg-blue-400"
                     x-on:click="open = true"
                     > Ask Question 
                 </button>
             </div>
+
             <div 
                 class="mt-3" 
                 x-show="open"
@@ -41,8 +42,8 @@
             </div>
         </div>
 
-        {{-- question toggle buttons --}}
-        <div class="my-4 bg-white rounded-lg ">
+        <div class="mt-4 bg-white rounded-lg ">
+            {{-- question toggle buttons --}}
            <div class="flex">
                 <button 
                     class="flex-1 text-xl bg-gray-100 rounded-b-lg" 
@@ -61,26 +62,24 @@
            <div class="px-3">
                {{-- all threads  --}}
                 <div x-show="tab === 'all'">
-                    <x-thread-card :threads="$allThreads" />
+                    <x-thread-card :threads="$threads" />
 
                      <div class="flex justify-center mt-4">
-                        {{ $allThreads->links() }}
+                        {{ $threads->links() }}
                     </div>
                 </div>
 
                 {{-- user's thread  --}}
                 <div x-show="tab === 'users'">
-
-                    @if ($userThreads === "")
-                       <div class="mx-auto">
-                            <h1> Login First </h1>
-                       </div>
+                    
+                    @if (auth()->user())
+                      @if ( auth()->user()->threads->isEmpty())
+                          No threads
+                      @else
+                        <x-thread-card :threads="auth()->user()->threads" />   
+                      @endif
                     @else
-                        <x-thread-card :threads="$userThreads" />
-
-                        <div class="flex justify-center mt-4">
-                            {{ $userThreads->links() }}
-                        </div>
+                        You need to login 
                     @endif
                 </div>
            </div>

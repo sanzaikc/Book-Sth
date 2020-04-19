@@ -20,6 +20,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
 
+    <link type='text/css' href="{{ asset('/font/flaticon.css') }}" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
 </head>
@@ -76,8 +78,10 @@
             </div>
         </nav>
 
-        <main class="container mx-auto flex px-4 mt-8">
+        <main class="container mx-auto flex px-4 my-8">
 
+            
+            
             <div class="w-64">
                 @include('_navigation')
             </div>
@@ -86,5 +90,6 @@
             </div>
         </main>
     </div>
+    @include('sweetalert::alert')
 </body>
 </html>
