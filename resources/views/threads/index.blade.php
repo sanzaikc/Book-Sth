@@ -9,7 +9,7 @@
                 <h2 class="text-3xl font-semibold">Discussion Forum</h2> 
                 <i class="fa fa-user"></i>
                 <button 
-                    class="bg-blue-500 rounded-full text-white text-sm focus:outline-none px-3 shadow-sm     hover:bg-blue-400"
+                    class="bg-blue-500 rounded-full text-white text-sm focus:outline-none px-3 shadow-sm  hover:bg-blue-400"
                     x-on:click="open = true"
                     > Ask Question 
                 </button>
@@ -42,18 +42,18 @@
             </div>
         </div>
 
-        <div class="mt-4 bg-white rounded-lg ">
+        <div class="my-4 bg-white shadow-md rounded-lg">
             {{-- question toggle buttons --}}
            <div class="flex">
                 <button 
-                    class="flex-1 text-xl bg-gray-100 rounded-b-lg" 
-                    x-bind:class="{'bg-white inline-block rounded-t py-1 px-4 text-blue-500 font-semibold focus:outline-none': tab === 'all' }" 
+                    class="flex-1 text-xl bg-gray-100" 
+                    x-bind:class="{'bg-white inline-block py-1 px-4 rounded-t-lg text-blue-500 font-semibold focus:outline-none': tab === 'all' }" 
                     x-on:click="tab = 'all'"
                     >All Questions
                 </button>
                 <button 
-                    class="flex-1 text-xl bg-gray-100 rounded-b-lg" 
-                    x-bind:class="{'bg-white inline-block rounded-t py-1 px-4 text-blue-500 font-semibold focus:outline-none': tab === 'users' }" 
+                    class="flex-1 text-xl bg-gray-100" 
+                    x-bind:class="{'bg-white inline-block py-1 px-4 rounded-t text-blue-500 font-semibold focus:outline-none': tab === 'users' }" 
                     x-on:click="tab = 'users'"
                     >My Questions
                 </button>
@@ -73,14 +73,18 @@
                 <div x-show="tab === 'users'">
                     
                     @if (auth()->user())
-                      @if ( auth()->user()->threads->isEmpty())
+                      @if ( auth()->user()->threads->isEmpty() )
                           No threads
                       @else
                         <x-thread-card :threads="auth()->user()->threads" />   
                       @endif
                     @else
-                        You need to login 
-                    @endif
+                        <div class="flex flex-col justify-center items-center p-4 rounded-lg">
+                            <h2 class="text-2xl font-semibold mb-2">You Need to Login First</h2>
+                            <a href="{{ route('login') }}" class="text-xl text-white bg-blue-500 px-4 py-1 rounded-full hover:no-underline hover:bg-blue-400" > Login </a>
+                        </div>
+                     @endif 
+                
                 </div>
            </div>
 

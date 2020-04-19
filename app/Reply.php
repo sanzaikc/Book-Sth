@@ -17,4 +17,14 @@ class Reply extends Model
     {
        return $this->belongsTo(Thread::class);
     }
+
+    public static function booted(){
+        static::created(function($replies){
+            $replies->thread->increment('replies');
+        });
+
+        static::deleted(function($replies){
+            $replies->thread->decrement('replies');
+        });
+    }
 }

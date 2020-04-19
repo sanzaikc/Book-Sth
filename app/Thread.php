@@ -17,4 +17,14 @@ class Thread extends Model
     {
         return $this->hasMany(Reply::class);
     }
+
+    public function getBestAnswerAttribute()
+    {
+        if($this->best_reply_id){
+            return "text-green-400 bg-green-200 ";  
+        }
+        else{
+            return " ";
+        }
+    }
 }

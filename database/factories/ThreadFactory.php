@@ -10,5 +10,8 @@ $factory->define(Thread::class, function (Faker $faker) {
         'user_id' => App\User::pluck('id')->random(),
         'title' => $faker->sentence,
         'body' => $faker->paragraphs(rand(3,7),true),
+        'views'=> rand(0,10),
+        'replies'=> rand(0,10),
+        'votes'=> rand(-10,10),
     ];
 });

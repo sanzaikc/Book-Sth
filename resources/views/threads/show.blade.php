@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-white rounded-lg px-4 py-8">
+    <div class="bg-white rounded-lg px-4 py-8 shadow-md">
 
         {{-- thread section --}}
         <div class="thread" x-data="{ open: false , modal: false }">
@@ -64,7 +64,7 @@
                 <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full  w-10 h-10"  >
                 <div class="ml-3">
                     <h2 class="font-semibold text-xl"> {{ $thread->user->name }} </h2>
-                    <p class="text-gray-500"> {{ $thread->created_at }} </p>
+                    <p class="text-gray-500"> {{ $thread->created_at->diffForHumans()}} </p>
                 </div>
             </div>
 
@@ -73,7 +73,7 @@
             {{-- leave a reply  --}}
             <div class="flex items-center mt-6">
                 <span class="flaticon-like text-blue-500 font-bold"></span>
-                <span class="ml-3 font-semibold "> 10 likes </span>
+                <span class="ml-3 font-semibold "> {{ $thread->votes }} {{ Str::plural('like', $thread->votes) }} </span>
                 <button 
                     type="button" 
                     class="ml-3 bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-2 py-1   hover:bg-blue-400"
@@ -82,7 +82,7 @@
                 </button>
             </div> 
 
-            {{-- leave comment  --}}
+            {{-- comment  --}}
             <div class="mt-3" x-show="open">
                 <form action="" method="post" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
                     @csrf
