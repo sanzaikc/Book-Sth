@@ -20,11 +20,11 @@ class Reply extends Model
 
     public static function booted(){
         static::created(function($replies){
-            $replies->thread->increment('replies');
+            $replies->thread->increment('reply_count');
         });
 
         static::deleted(function($replies){
-            $replies->thread->decrement('replies');
+            $replies->thread->decrement('reply_count');
         });
     }
 }

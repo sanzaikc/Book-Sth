@@ -14,9 +14,9 @@ class AddColumnsToThreadsTable extends Migration
     public function up()
     {
         Schema::table('threads', function (Blueprint $table) {
-            $table->integer('votes')->default(0);
-            $table->integer('replies')->default(0);
-            $table->integer('views')->default(0);
+            $table->integer('vote_count')->default(0);
+            $table->integer('reply_count')->default(0);
+            $table->integer('view_count')->default(0);
             $table->unsignedInteger('best_reply_id')->nullable();
         });
     }
@@ -29,7 +29,7 @@ class AddColumnsToThreadsTable extends Migration
     public function down()
     {
         Schema::table('threads', function (Blueprint $table) {
-            $table->dropColumn(['votes', 'replies', 'views','best_reply_id' ]);
+            $table->dropColumn(['vote_count', 'reply_count', 'view_count','best_reply_id' ]);
         });
     }
 }

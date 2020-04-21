@@ -21,9 +21,9 @@
             </div>
             {{-- votes, answers and views --}}
             <div>
-                <span class="text-gray-500 px-2 rounded"> {{ $thread->votes }} {{ Str::plural('vote', $thread->votes) }} </span>
-                <span class="text-gray-500 px-2 rounded ml-12 {{ $thread->best_answer }} "> {{ $thread->replies }} {{ Str::plural('reply', $thread->replies) }} </span>
-                <span class="text-gray-500 px-2 rounded ml-12"> {{ $thread->views }} {{ Str::plural('view', $thread->views) }} </span>
+                <span class="text-gray-500 px-2 rounded"> {{ $thread->vote_count }} {{ Str::plural('vote', $thread->vote_count) }} </span>
+                <span class="text-gray-500 px-2 rounded ml-12 {{ $thread->best_answer }} "> {{ $thread->reply_count }} {{ Str::plural('reply', $thread->reply_count) }} </span>
+                <span class="text-gray-500 px-2 rounded ml-12"> {{ $thread->view_count }} {{ Str::plural('view', $thread->view_count) }} </span>
             </div>
         </div>
     </div>

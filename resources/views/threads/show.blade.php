@@ -4,7 +4,7 @@
     <div class="bg-white rounded-lg px-4 py-8 shadow-md">
 
         {{-- thread section --}}
-        <div class="thread" x-data="{ open: false , modal: false }">
+        <div class="thread" x-data="{ replySection: false , editModal: false }">
             {{-- edit/delete  --}}
             <div class="flex justify-between">
                 <h2 class="font-semibold text-3xl"> {{ $thread->title }} </h2>
@@ -17,22 +17,22 @@
                         </form>
                         <button 
                             class="bg-blue-500 text-white rounded-full shadow-sm focus:outline-none px-3 py-1 ml-2 hover:bg-blue-400"
-                            x-on:click="modal = true"
+                            x-on:click="editModal = true"
                             >Edit
                         </button >
                     </div>     
                 @endcan
             </div>
 
-            {{-- edit modal  --}}
-            <div x-show="modal">
+            {{-- edit editModal  --}}
+            <div x-show="editModal">
                 <div
                     style="background-color: rgba(0, 0, 0, .5);"
-                    class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
+                    class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg"
                 >
-                    <div class="container mx-auto w-1/2  rounded-lg overflow-y-auto">
-                        <div class="bg-white rounded">
-                            <div class="modal-body">
+                    <div class="container mx-auto w-1/2  rounded-lg ">
+                        <div class="bg-white rounded p-2">
+                            <div class="editModal">
                                 <h2 class="text-2xl font-semibold mb-2">Edit your Thread</h2>
                                 <form action="{{ route('threads.update', $thread) }}" method="post" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
                                     @csrf
@@ -43,7 +43,7 @@
                                         <button 
                                             type="button" 
                                             class="bg-white rounded-full focus:outline-none px-3 py-1 shadow-sm hover:bg-gray-300" 
-                                            x-on:click="modal = false"
+                                            x-on:click="editModal = false"
                                             > Cancel 
                                         </button>
                                         <button 
@@ -73,25 +73,25 @@
             {{-- leave a reply  --}}
             <div class="flex items-center mt-6">
                 <span class="flaticon-like text-blue-500 font-bold"></span>
-                <span class="ml-3 font-semibold "> {{ $thread->votes }} {{ Str::plural('like', $thread->votes) }} </span>
+                <span class="ml-3 font-semibold "> {{ $thread->vote_count }} {{ Str::plural('like', $thread->vote_count) }} </span>
                 <button 
                     type="button" 
                     class="ml-3 bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-2 py-1   hover:bg-blue-400"
-                    x-on:click="open = true"
+                    x-on:click="replySection = true"
                     > Leave a reply
                 </button>
             </div> 
 
-            {{-- comment  --}}
-            <div class="mt-3" x-show="open">
-                <form action="" method="post" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
+            {{-- reply form  --}}
+            <div class="mt-3" x-show="replySection">
+                <form action=" {{ route('threads.replies.store', $thread) }} " method="post" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
                     @csrf
                     <textarea name="body" class="w-full rounded-lg mt-2 p-4" placeholder="State your mind.."></textarea>
                     <div class="mt-2 text-sm">
                         <button 
                             type="button" 
                             class="bg-white rounded-full focus:outline-none px-3 py-1 shadow-sm hover:bg-gray-400" 
-                            x-on:click="open = false"
+                            x-on:click="replySection = false"
                             > Cancel 
                         </button>
                         <button 
@@ -107,24 +107,25 @@
 
         {{-- answers/comment section  --}}
         <div class="mt-12">
-            <h2 class="font-semibold mb-3">13 Replies</h2>
+            <h2 class="font-semibold mb-3"> {{ $thread->reply_count }} {{ Str::plural('reply', $thread->reply_count) }} </h2>
             <hr>
-            @for ($i = 0; $i < 4; $i++)
+
+        @foreach ($thread->replies as $reply)
             <div class="my-4">
                 <div class="flex items-center">
                     <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full w-10 h-10" >
                     <div class="ml-3">
                         <div class="flex items-center">
-                            <h2 class="font-semibold text-xl">Another Name</h2>
+                            <h2 class="font-semibold text-xl"> {{ $reply->user->name }} </h2>
                             <span class="ml-3 text-green-500 bg-green-100 text-sm font-semibold rounded-full px-2 flex items-center "><span class="flaticon-best mr-2"></span> Best Reply </span>
                         </div>
                         <p class="text-gray-500">2 days ago</p>
                     </div>
                 </div>
-                <p class="mt-6"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit dolore amet quidem! Dolores magni magnam quaerat ab iure suscipit iusto?</p>
+                <p class="mt-6"> {{ $reply->body }} </p>
             </div>
             <hr>
-            @endfor
+        @endforeach
         </div>
     </div>
 @endsection

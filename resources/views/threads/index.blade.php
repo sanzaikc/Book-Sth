@@ -74,7 +74,7 @@
                     
                     @if (auth()->user())
                       @if ( auth()->user()->threads->isEmpty() )
-                          No threads
+                          You havenot started any threads, yet!
                       @else
                         <x-thread-card :threads="auth()->user()->threads" />   
                       @endif

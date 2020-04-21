@@ -58,8 +58,8 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        $thread->increment('views');
-        
+        $thread->increment('view_count');
+
         return view('threads.show', compact('thread'));
     }
 
