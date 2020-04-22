@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Reply;
+use App\Thread;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth', ['only'=> ['store','update', 'destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,7 @@ class ReplyController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -33,9 +38,14 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Thread $thread)
     {
-        //
+        $thread->replies()->create($request->validate([
+            'body' => 'required'
+            ]) + ['user_id' => auth()->id()]
+        );
+
+        return back()->with('toast_success', 'Reply Subitted Successfully!');
     }
 
     /**
@@ -78,8 +88,11 @@ class ReplyController extends Controller
      * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $reply)
+    public function destroy(Thread $thread, Reply $reply)
     {
-        //
+        $this->authorize('delete', $reply);
+        $reply->delete();
+
+        return back()->with('toast_success', 'Reply Deleted Successfully!');
     }
 }

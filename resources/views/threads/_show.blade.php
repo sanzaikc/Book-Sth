@@ -13,13 +13,19 @@
                         <form class="form-delete" action=" {{ route('threads.destroy', $thread) }} " method="post">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" class="bg-red-500 text-white rounded-full shadow-sm focus:outline-none px-3 py-1 hover:bg-red-400" onclick="confirm('Are you sure you want to delete?')" value="Delete">
+                            <button 
+                                type="submit"
+                                class="text-red-500 hover:no-underline transform hover:scale-110 hover:text-red-500"
+                                onclick="confirm('Are you sure you want to delete?')"
+                                > <span class="flaticon-trash ml-3"></span>
+                            </button >
                         </form>
                         <button 
-                            class="bg-blue-500 text-white rounded-full shadow-sm focus:outline-none px-3 py-1 ml-2 hover:bg-blue-400"
+                            class="hover:no-underline transform hover:scale-110 hover:text-blue-500"
                             x-on:click="editModal = true"
-                            >Edit
+                            > <span class="flaticon-contract ml-3"></span>
                         </button >
+                        
                     </div>     
                 @endcan
             </div>
@@ -76,7 +82,7 @@
                 <span class="ml-3 font-semibold "> {{ $thread->vote_count }} {{ Str::plural('like', $thread->vote_count) }} </span>
                 <button 
                     type="button" 
-                    class="ml-3 bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-2 py-1   hover:bg-blue-400"
+                    class="ml-3 bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-3   py-1  hover:bg-blue-400"
                     x-on:click="replySection = true"
                     > Leave a reply
                 </button>
@@ -105,27 +111,7 @@
 
         </div>
 
-        {{-- answers/comment section  --}}
-        <div class="mt-12">
-            <h2 class="font-semibold mb-3"> {{ $thread->reply_count }} {{ Str::plural('reply', $thread->reply_count) }} </h2>
-            <hr>
+        @include('replies._index')
 
-        @foreach ($thread->replies as $reply)
-            <div class="my-4">
-                <div class="flex items-center">
-                    <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full w-10 h-10" >
-                    <div class="ml-3">
-                        <div class="flex items-center">
-                            <h2 class="font-semibold text-xl"> {{ $reply->user->name }} </h2>
-                            <span class="ml-3 text-green-500 bg-green-100 text-sm font-semibold rounded-full px-2 flex items-center "><span class="flaticon-best mr-2"></span> Best Reply </span>
-                        </div>
-                        <p class="text-gray-500">2 days ago</p>
-                    </div>
-                </div>
-                <p class="mt-6"> {{ $reply->body }} </p>
-            </div>
-            <hr>
-        @endforeach
-        </div>
     </div>
 @endsection

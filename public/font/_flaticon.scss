@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 18/04/2020 02:30
+    Creation date: 22/04/2020 03:07
     */
 
     @font-face {
@@ -42,9 +42,13 @@
 .flaticon-like-1:before { content: "\f102"; }
 .flaticon-dislike:before { content: "\f103"; }
 .flaticon-dislike-1:before { content: "\f104"; }
+.flaticon-trash:before { content: "\f105"; }
+.flaticon-contract:before { content: "\f106"; }
     
     $font-Flaticon-best: "\f100";
     $font-Flaticon-like: "\f101";
     $font-Flaticon-like-1: "\f102";
     $font-Flaticon-dislike: "\f103";
     $font-Flaticon-dislike-1: "\f104";
+    $font-Flaticon-trash: "\f105";
+    $font-Flaticon-contract: "\f106";

@@ -22,9 +22,8 @@ class ThreadController extends Controller
     public function index()
     {
         $threads = Thread::latest()->paginate(10);
-        
-        
-        return view('threads.index', compact('threads'));
+    
+        return view('threads._index', compact('threads'));
     }
 
     /**
@@ -60,7 +59,7 @@ class ThreadController extends Controller
     {
         $thread->increment('view_count');
 
-        return view('threads.show', compact('thread'));
+        return view('threads._show', compact('thread'));
     }
 
     /**

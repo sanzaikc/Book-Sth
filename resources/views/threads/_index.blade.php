@@ -11,7 +11,7 @@
                 <button 
                     class="bg-blue-500 rounded-full text-white text-sm focus:outline-none px-3 shadow-sm  hover:bg-blue-400"
                     x-on:click="open = true"
-                    > Ask Question 
+                    > Start a thread
                 </button>
             </div>
 
@@ -49,13 +49,13 @@
                     class="flex-1 text-xl bg-gray-100" 
                     x-bind:class="{'bg-white inline-block py-1 px-4 rounded-t-lg text-blue-500 font-semibold focus:outline-none': tab === 'all' }" 
                     x-on:click="tab = 'all'"
-                    >All Questions
+                    >All Threads
                 </button>
                 <button 
                     class="flex-1 text-xl bg-gray-100" 
                     x-bind:class="{'bg-white inline-block py-1 px-4 rounded-t text-blue-500 font-semibold focus:outline-none': tab === 'users' }" 
                     x-on:click="tab = 'users'"
-                    >My Questions
+                    >My Threads
                 </button>
            </div>
 
