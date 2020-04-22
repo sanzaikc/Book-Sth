@@ -6,6 +6,7 @@ use Auth;
 use App\Thread;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreThread;
+use Illuminate\Support\Facades\Validator;
 
 
 class ThreadController extends Controller
@@ -42,9 +43,18 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreThread $request)
+    public function store(Request $request)
     {
-        $request->user()->threads()->create($request->all());
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:100',
+            'body' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+        }
+    
+        Thread::create($request->all() + ['user_id' => auth()->id()]);
 
         return back()->with('toast_success', 'Thread Created Successfully!');
     }
@@ -80,7 +90,7 @@ class ThreadController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreTHread $request, Thread $thread)
+    public function update(Request $request, Thread $thread)
     {
         if(auth()->user()->cant('update', $thread)){
             abort(401);
@@ -104,5 +114,10 @@ class ThreadController extends Controller
             $thread->delete();
             return redirect()->route('threads.index')->with('toast_info', 'Thread Deleted Successfully!');
         }
+    }
+
+    public function accept(Thread $thread, Reply $reply)
+    {
+       return "You have reached here!"; 
     }
 }

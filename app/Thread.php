@@ -27,4 +27,10 @@ class Thread extends Model
             return " ";
         }
     }
+
+    public function acceptBestReply(Reply $reply)
+    {
+        $this->best_reply_id = $reply->id;
+        $this->save();
+    }
 }

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Reply;
 use App\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ReplyController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth', ['only'=> ['store','update', 'destroy']]);
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -40,10 +42,18 @@ class ReplyController extends Controller
      */
     public function store(Request $request, Thread $thread)
     {
-        $thread->replies()->create($request->validate([
-            'body' => 'required'
-            ]) + ['user_id' => auth()->id()]
-        );
+        $validator = Validator::make($request->all(), [
+            'body' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+        }
+    
+        Reply::create($request->all() + [
+            'user_id' => auth()->id(),
+            'thread_id' => $thread->id 
+            ]);
 
         return back()->with('toast_success', 'Reply Subitted Successfully!');
     }
@@ -93,6 +103,6 @@ class ReplyController extends Controller
         $this->authorize('delete', $reply);
         $reply->delete();
 
-        return back()->with('toast_success', 'Reply Deleted Successfully!');
+        return back()->with('toast_info', 'Reply Deleted Successfully!');
     }
 }

@@ -25,3 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('threads', 'ThreadController');
 Route::resource('threads.replies', 'ReplyController');
 
+Route::get('replies/{reply}/accept', 'BestReplyController')->name('bestAnswer');
+
