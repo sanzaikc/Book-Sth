@@ -5,16 +5,14 @@
 
         {{-- thread section --}}
         <div class="thread" x-data="{ replySection: false , editModal: false }">
-            {{-- edit/delete  --}}
             <div class="">
                 <h2 class="font-semibold text-3xl"> {{ $thread->title }} </h2>
             </div>
-
             {{-- edit editModal  --}}
             <div x-show="editModal">
                 <div
                     style="background-color: rgba(0, 0, 0, .5);"
-                    class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg"
+                    class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg z-50"
                 >
                     <div class="container mx-auto w-1/2  rounded-lg ">
                         <div class="bg-white rounded p-2">
@@ -53,43 +51,52 @@
                         <h2 class="font-semibold text-xl"> {{ $thread->user->name }} </h2>
                         <p class="text-gray-500"> {{ $thread->created_at->diffForHumans()}} </p>
                     </div>
+                    {{-- edit/delete  --}}
                     @can('update', $thread)
-                    <div class="flex items-center">
-                        <form action=" {{ route('threads.destroy', $thread) }} " method="post">
-                            @csrf
-                            @method('DELETE')
+                        <div class="flex items-center">
+                            <form action=" {{ route('threads.destroy', $thread) }} " method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button 
+                                    type="submit"
+                                    title="Delete this thread"
+                                    class="text-red-500 focus:outline-none transform hover:scale-110 hover:text-red-500 transition-ease-in duration-150"
+                                    onclick="confirm('Are you sure you want to delete?')"
+                                    > <span class="flaticon-trash ml-3"></span>
+                                </button >
+                            </form>
                             <button 
-                                type="submit"
-                                title="Delete this thread"
-                                class="text-red-500 focus:outline-none transform hover:scale-110 hover:text-red-500"
-                                onclick="confirm('Are you sure you want to delete?')"
-                                > <span class="flaticon-trash ml-3"></span>
-                            </button >
-                        </form>
-                        <button 
-                            title="Edit this thread"
-                            class="focus:outline-none transform hover:scale-110 hover:text-blue-500"
-                            x-on:click="editModal = true"
-                            > <span class="flaticon-contract ml-3"></span>
-                        </button >          
-                    </div>     
-                @endcan
+                                title="Edit this thread"
+                                class="focus:outline-none transform hover:scale-110 hover:text-blue-500 transition-ease-in duration-150"
+                                x-on:click="editModal = true"
+                                > <span class="flaticon-contract ml-3"></span>
+                            </button >          
+                        </div>     
+                     @endcan
                 </div>
                
             </div>
 
-            <p class="mt-6 rounded bg-blue-100 p-2"> {{ $thread->body }} </p>
+            <p class="mt-6 p-2 text-xl rounded bg-gray-100 "> {{ $thread->body }} </p>
 
             {{-- leave a reply  --}}
             <div class="flex items-center mt-6">
-                <span class="flaticon-like text-blue-500 font-bold"></span>
-                <span class="ml-3 font-semibold "> {{ $thread->vote_count }} {{ Str::plural('like', $thread->vote_count) }} </span>
-                <button 
-                    type="button" 
-                    class="ml-3 bg-blue-500 rounded-full text-white  focus:outline-none shadow-sm px-3   py-1  hover:bg-blue-400"
-                    x-on:click="replySection = true"
-                    > Leave a reply
-                </button>
+                <span class="flaticon-like text-blue-500"></span>
+                <span class="ml-2 font-semibold "> {{ $thread->vote_count }} {{ Str::plural('like', $thread->vote_count) }} </span>
+                @if (auth()->user())
+                    <button 
+                        type="button" 
+                        class="ml-3 bg-blue-500 rounded-full text-white focus:outline-none shadow-sm px-3 py-1 hover:bg-blue-400"
+                        x-on:click="replySection = true"
+                        > Leave a reply
+                    </button>
+                @else
+                    <a 
+                        href="{{ route('login') }}" 
+                        class="ml-3 bg-blue-500 rounded-full text-white focus:outline-none shadow-sm px-3 py-1 hover:bg-blue-400 hover:no-underline"
+                        >Sign in to reply
+                    </a>     
+                @endif  
             </div> 
 
             {{-- reply form  --}}

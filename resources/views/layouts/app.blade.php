@@ -28,6 +28,7 @@
 
 </head>
 <body>
+    {{-- style="background: linear-gradient(to top, #2980b9, #6dd5fa, #ffffff);" --}}
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

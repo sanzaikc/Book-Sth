@@ -5,14 +5,22 @@
         
         {{-- ask question toggle  --}}
         <div class="" x-data="{ open: false }">
-            <div class="flex justify-between">
+            <div class="flex items-center justify-between">
                 <h2 class="text-3xl font-semibold">Discussion Forum</h2> 
                 <i class="fa fa-user"></i>
-                <button 
-                    class="bg-blue-500 rounded-full text-white text-sm focus:outline-none px-3 shadow-sm  hover:bg-blue-400"
-                    x-on:click="open = true"
-                    > Start a thread
-                </button>
+                @if (auth()->user())
+                    <button 
+                        class="bg-blue-500 rounded-full text-white text-sm focus:outline-none px-3 py-1 shadow-sm  hover:bg-blue-400"
+                        x-on:click="open = true"
+                        > Start a thread
+                    </button>  
+                @else
+                    <a 
+                        href="{{ route('login') }}" 
+                        class="bg-blue-500 rounded-full text-white focus:outline-none shadow-sm px-3 py-1 hover:bg-blue-400 hover:no-underline"
+                        >Start a thread ?
+                    </a> 
+                @endif
             </div>
 
             <div 
@@ -42,17 +50,17 @@
             </div>
         </div>
 
-        <div class="my-4 bg-white shadow-md rounded-lg">
+        <div class="my-3 rounded-lg">
             {{-- question toggle buttons --}}
            <div class="flex">
                 <button 
-                    class="flex-1 text-xl bg-gray-100" 
+                    class="flex-1 text-xl" 
                     x-bind:class="{'bg-white inline-block py-1 px-4 rounded-t-lg text-blue-500 font-semibold focus:outline-none': tab === 'all' }" 
                     x-on:click="tab = 'all'"
                     >All Threads
                 </button>
                 <button 
-                    class="flex-1 text-xl bg-gray-100" 
+                    class="flex-1 text-xl bg-none" 
                     x-bind:class="{'bg-white inline-block py-1 px-4 rounded-t text-blue-500 font-semibold focus:outline-none': tab === 'users' }" 
                     x-on:click="tab = 'users'"
                     >My Threads
@@ -60,12 +68,12 @@
            </div>
 
            {{-- thread section --}}
-           <div class="px-3 py-4">
+           <div class="px-3 py-3 bg-white shadow-md">
                {{-- all threads  --}}
                 <div x-show="tab === 'all'">
                     <x-thread-card :threads="$threads" />
 
-                     <div class="flex justify-center mt-3">
+                     <div class="flex justify-center mt-2">
                         {{ $threads->links() }}
                     </div>
                 </div>
