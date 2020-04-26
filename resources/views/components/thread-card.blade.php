@@ -1,6 +1,6 @@
 <div>
     @foreach ($threads as $thread)  
-    <div class="my-2 p-3 rounded-lg hover:bg-gray-100">
+    <div class="my-2 p-3 rounded-lg hover:bg-blue-100">
         <div class="flex mb-1" >
             <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full w-10 h-10" >
             <a href="{{ route('threads.show', $thread) }}" class="ml-2 text-xl font-bold hover:no-underline"> {{ Str::limit( $thread->title , 100) }} </a>

@@ -78,7 +78,7 @@
                
             </div>
 
-            <p class="mt-6 rounded bg-gray-100 p-2"> {{ $thread->body }} </p>
+            <p class="mt-6 rounded bg-blue-100 p-2"> {{ $thread->body }} </p>
 
             {{-- leave a reply  --}}
             <div class="flex items-center mt-6">
@@ -118,4 +118,5 @@
         @include('replies._index')
 
     </div>
+    
 @endsection

@@ -40,12 +40,12 @@
                                 @csrf
                                 @method('DELETE')
                                 <button 
-                                type="submit"
-                                class="text-red-500 transform hover:scale-110 hover:text-red-500"
-                                onclick="confirm('Are you sure you want to delete?')"
-                                > 
+                                    type="submit"
+                                    class="text-red-500 transform hover:scale-110 hover:text-red-500"
+                                    onclick="confirm('Are you sure you want to delete?')"
+                                    > 
                                     <span class="flaticon-trash ml-3"></span>
-                            </button >
+                                </button>
                         </form>
                         @endcan
                     </div>
