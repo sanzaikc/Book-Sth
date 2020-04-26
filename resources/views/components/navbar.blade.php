@@ -2,14 +2,14 @@
     <nav class="bg-white border-b py-1">
         <div class="container mx-auto">
             <ul class="h-12 flex items-center">
-                <li>
+                <li class="mr-auto">
                     <a class="text-2xl my-auto" href="{{ url('/') }}">
                         Bookish
                     </a>
                 </li>
                 <!-- Authentication Links -->
                 @guest
-                    <li class="ml-auto">
+                    <li>
                         <a class="text-gray-600 hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
@@ -18,7 +18,16 @@
                         </li>
                     @endif
                 @else
-                    <div class="ml-auto dropdown inline-block relative">
+                    <li class="ml-4">
+                        <a class="text-gray-600 hover:underline" href="{{ url('/home') }}">Home</a>
+                    </li>
+                    <li class="ml-4">
+                        <a class="text-gray-600 hover:underline" href="{{ url('/home') }}">Books</a>
+                    </li>
+                    <li class="ml-4">
+                        <a class="text-gray-600 hover:underline" href="{{ url('/threads') }}">Forum</a>
+                    </li>
+                    <div class="ml-4 dropdown inline-block relative">
                         <button class="text-gray-700 font-semibold inline-flex items-center focus:outline-none">
                             <span class="mr-1">{{ Auth::user()->name }}</span>
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>

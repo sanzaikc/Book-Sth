@@ -37,9 +37,9 @@
         <x-navbar/>
 
         <main class="container mx-auto flex px-4 my-8">
-            <div class="w-64">
-                @include('_navigation')
-            </div>
+{{--            <div class="w-64">--}}
+{{--                @include('_navigation')--}}
+{{--            </div>--}}
             <div class="mx-4 w-full">
                 @yield('content')
             </div>

@@ -11,7 +11,7 @@
             @csrf
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
-                    <label for="email" class="block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4">{{ __('E-Mail Address') }}</label>
+                    <label for="email" class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">{{ __('E-Mail Address') }}</label>
                 </div>
                 <div class="md:w-2/3">
                     <input id="email" type="email" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:bg-white @error('email') border-red-500 @else focus:border-blue-500 @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
@@ -23,7 +23,7 @@
 
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
-                    <label for="password" class="block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4">{{ __('Password') }}</label>
+                    <label for="password" class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">{{ __('Password') }}</label>
                 </div>
                 <div class="md:w-2/3">
                     <input id="password" type="password" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:bg-white @error('password') border-red-500 @else focus:border-blue-500 @enderror" name="password" autocomplete="current-password">
@@ -38,7 +38,7 @@
                 <div class="md:w-2/3">
                     <input class="mr-2 leading-tight" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                    <label for="remember">
+                    <label class="font-bold text-gray-500" for="remember">
                         {{ __('Remember Me') }}
                     </label>
                 </div>
@@ -51,7 +51,7 @@
                     Sign In
                 </button>
                 @if (Route::has('password.request'))
-                    <a class="font-bold text-sm text-blue-500 hover:text-underline" href="{{ route('password.request') }}">
+                    <a class="font-bold text-sm text-blue-500 hover:underline" href="{{ route('password.request') }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif
