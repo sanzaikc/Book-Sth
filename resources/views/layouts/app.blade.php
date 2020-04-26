@@ -81,9 +81,6 @@
         </nav>
 
         <main class="container mx-auto flex px-4 my-8">
-
-            
-            
             <div class="w-64">
                 @include('_navigation')
             </div>

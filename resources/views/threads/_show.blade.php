@@ -6,28 +6,8 @@
         {{-- thread section --}}
         <div class="thread" x-data="{ replySection: false , editModal: false }">
             {{-- edit/delete  --}}
-            <div class="flex justify-between">
+            <div class="">
                 <h2 class="font-semibold text-3xl"> {{ $thread->title }} </h2>
-                @can('update', $thread)
-                    <div class="flex items-center">
-                        <form class="form-delete" action=" {{ route('threads.destroy', $thread) }} " method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button 
-                                type="submit"
-                                class="text-red-500 hover:no-underline transform hover:scale-110 hover:text-red-500"
-                                onclick="confirm('Are you sure you want to delete?')"
-                                > <span class="flaticon-trash ml-3"></span>
-                            </button >
-                        </form>
-                        <button 
-                            class="hover:no-underline transform hover:scale-110 hover:text-blue-500"
-                            x-on:click="editModal = true"
-                            > <span class="flaticon-contract ml-3"></span>
-                        </button >
-                        
-                    </div>     
-                @endcan
             </div>
 
             {{-- edit editModal  --}}
@@ -68,10 +48,34 @@
             {{-- thread detail   --}}
             <div class="flex mt-4">
                 <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full  w-10 h-10"  >
-                <div class="ml-3">
-                    <h2 class="font-semibold text-xl"> {{ $thread->user->name }} </h2>
-                    <p class="text-gray-500"> {{ $thread->created_at->diffForHumans()}} </p>
+                <div class="ml-3 w-full flex justify-between">
+                    <div>
+                        <h2 class="font-semibold text-xl"> {{ $thread->user->name }} </h2>
+                        <p class="text-gray-500"> {{ $thread->created_at->diffForHumans()}} </p>
+                    </div>
+                    @can('update', $thread)
+                    <div class="flex items-center">
+                        <form action=" {{ route('threads.destroy', $thread) }} " method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button 
+                                type="submit"
+                                title="Delete this thread"
+                                class="text-red-500 focus:outline-none transform hover:scale-110 hover:text-red-500"
+                                onclick="confirm('Are you sure you want to delete?')"
+                                > <span class="flaticon-trash ml-3"></span>
+                            </button >
+                        </form>
+                        <button 
+                            title="Edit this thread"
+                            class="focus:outline-none transform hover:scale-110 hover:text-blue-500"
+                            x-on:click="editModal = true"
+                            > <span class="flaticon-contract ml-3"></span>
+                        </button >          
+                    </div>     
+                @endcan
                 </div>
+               
             </div>
 
             <p class="mt-6 rounded bg-gray-100 p-2"> {{ $thread->body }} </p>

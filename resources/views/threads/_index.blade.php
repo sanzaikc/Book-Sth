@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div x-data="{ tab: 'all' }">
+    <div x-data="{ tab: 'all' }" class="">
         
         {{-- ask question toggle  --}}
         <div class="" x-data="{ open: false }">
@@ -16,7 +16,7 @@
             </div>
 
             <div 
-                class="mt-3" 
+                class="my-3" 
                 x-show="open"
                 @click.away="open = false"
             >
@@ -59,19 +59,19 @@
                 </button>
            </div>
 
-           <div class="px-3">
+           {{-- thread section --}}
+           <div class="px-3 py-4">
                {{-- all threads  --}}
                 <div x-show="tab === 'all'">
                     <x-thread-card :threads="$threads" />
 
-                     <div class="flex justify-center mt-4">
+                     <div class="flex justify-center mt-3">
                         {{ $threads->links() }}
                     </div>
                 </div>
 
                 {{-- user's thread  --}}
-                <div x-show="tab === 'users'">
-                    
+                <div x-show="tab === 'users'">             
                     @if (auth()->user())
                       @if ( auth()->user()->threads->isEmpty() )
                           You havenot started any threads, yet!
@@ -83,8 +83,7 @@
                             <h2 class="text-2xl font-semibold mb-2">You Need to Login First</h2>
                             <a href="{{ route('login') }}" class="text-xl text-white bg-blue-500 px-4 py-1 rounded-full hover:no-underline hover:bg-blue-400" > Login </a>
                         </div>
-                     @endif 
-                
+                     @endif               
                 </div>
            </div>
 
