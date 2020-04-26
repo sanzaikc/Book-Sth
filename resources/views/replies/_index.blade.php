@@ -27,7 +27,7 @@
                                 <button 
                                     type="submit" 
                                     class="mr-2 transform hover:scale-110 hover:text-green-500 cursor-pointer" 
-                                    title="Mark as best answer"
+                                    title="Mark as best reply"
                                     >
                                         <span class="flaticon-best"></span>                              
                                 </button>

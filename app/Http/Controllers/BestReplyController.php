@@ -11,6 +11,6 @@ class BestReplyController extends Controller
     {
         $reply->thread->acceptBestReply($reply);
 
-        return back();
+        return back()->with('toast_success', 'Reply by '. $reply->user->name .' marked as best reply!');
     }
 }
