@@ -46,7 +46,7 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|max:100',
+            'title' => 'required|max:250',
             'body' => 'required',
         ]);
     

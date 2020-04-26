@@ -53,7 +53,7 @@
                     <p class="text-gray-500"> {{ $reply->created_at->diffForHumans() }} </p>
                 </div>
             </div>
-            <p class="mt-6"> {{ $reply->body }} </p>
+            <p class="mt-2 ml-12 px-2 bg-gray-100 rounded"> {{ $reply->body }} </p>
         </div>
         <hr>
     @endforeach
