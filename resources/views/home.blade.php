@@ -1,23 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container flex flex-wrap">
+    <x-book img="https://edit.org/images/cat/book-covers-big-2019101610.jpg" />
+    <x-book img="https://www.mswordcoverpages.com/wp-content/uploads/2018/10/Book-cover-page-3-CRC.png" />
+    <x-book img="https://edit.org/images/cat/book-covers-big-2019101610.jpg" />
+    <x-book img="https://www.mswordcoverpages.com/wp-content/uploads/2018/10/Book-cover-page-3-CRC.png" />
+    <x-book img="https://edit.org/images/cat/book-covers-big-2019101610.jpg" />
+    <x-book img="https://www.mswordcoverpages.com/wp-content/uploads/2018/10/Book-cover-page-3-CRC.png" />
+    <x-book img="https://edit.org/images/cat/book-covers-big-2019101610.jpg" />
+    <x-book img="https://www.mswordcoverpages.com/wp-content/uploads/2018/10/Book-cover-page-3-CRC.png" />
 </div>
 @endsection

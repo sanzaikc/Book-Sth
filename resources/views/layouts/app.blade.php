@@ -35,8 +35,8 @@
     @livewireStyles
 
 </head>
-<body class="bg-gray-100">
-    <div id="app">
+<body>
+    <div id="app" class="relative">
         {{-- Navigation bar component  --}}
         <x-navbar/>
 
