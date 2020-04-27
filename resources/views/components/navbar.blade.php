@@ -21,7 +21,7 @@
                     <a class="text-gray-600 hover:underline" href="{{ url('/home') }}">Home</a>
                 </li>
                 <li class="ml-4">
-                    <a class="text-gray-600 hover:underline" href="{{ url('/home') }}">Books</a>
+                    <a class="text-gray-600 hover:underline" href="{{ url('/books') }}">Books</a>
                 </li>
                 <li class="ml-4">
                     <a class="text-gray-600 hover:underline" href="{{ url('/threads') }}">Forum</a>
