@@ -11,6 +11,7 @@
                     <img src="{{ $book->cover_img }}" alt="book" class="mr-4 object-cover h-24 w-24">
                 </div>
             </div>
+
             <div class="p-4 flex flex-col border rounded">
                 <div class="">
                     <h1 class="text-xl">Details</h1>
@@ -37,6 +38,15 @@
                 <div class="">
                     <h1 class="text-xl">Description</h1>
                     <p>{{$book->description}}</p>
+                </div>
+                <hr class="my-4" />
+                <div>
+                    <h1 class="text-xl">Tags</h1>
+                    <div class="mt-3">
+                        @foreach ($book->categories as $cat)
+                            <span class="inline-block bg-gray-200 rounded-full px-3 py-2 text-sm font-semibold text-gray-700 mr-2">{{ $cat->name }}</span> 
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

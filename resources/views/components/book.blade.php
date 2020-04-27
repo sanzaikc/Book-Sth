@@ -16,8 +16,9 @@
             </div>
         </div>
         <div class="px-4 py-2">
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#action</span>
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#adventure</span>
+            @foreach ($book->categories as $cat)
+                <span class="inline-block bg-gray-200 rounded-full px-1 text-sm font-semibold text-gray-700 mr-2">{{ $cat->name }}</span> 
+            @endforeach
         </div>
     </div>
 </div>
