@@ -73,7 +73,7 @@
                 <div x-show="tab === 'all'">
                     <x-thread-card :threads="$threads" />
 
-                     <div class="flex justify-center mt-2">
+                     <div class="flex justify-center mt-4">
                         {{ $threads->links() }}
                     </div>
                 </div>
