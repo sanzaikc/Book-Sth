@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
     <style>
-        boddy{
+        body{
             font-family: 'Nunito Sans', sans-serif;
         }
         .dropdown:hover .dropdown-menu {
@@ -37,16 +37,15 @@
 </head>
 <body class="bg-gray-100">
     <div id="app">
+        {{-- Navigation bar component  --}}
         <x-navbar/>
 
         <main class="container mx-auto flex px-4 my-8">
-{{--            <div class="w-64">--}}
-{{--                @include('_navigation')--}}
-{{--            </div>--}}
             <div class="w-full">
                 @yield('content')
             </div>
         </main>
+
     </div>
 
     @include('sweetalert::alert')
