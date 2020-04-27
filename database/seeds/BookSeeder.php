@@ -14,6 +14,8 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Book::class, 8)->create();
+        factory(App\Book::class, 8)->create()->each(function ($b){
+            $b->categories()->attach(rand(1,7));
+        });
     }
 }
