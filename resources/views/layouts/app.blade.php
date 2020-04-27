@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Book') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -17,12 +17,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
 
     <link type='text/css' href="{{ asset('/font/flaticon.css') }}" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
     <style>
         .dropdown:hover .dropdown-menu {
             display: block;
@@ -31,7 +32,7 @@
     @livewireStyles
 
 </head>
-<body>
+<body class="bg-gray-100">
     {{-- style="background: linear-gradient(to top, #2980b9, #6dd5fa, #ffffff);" --}}
     <div id="app">
         <x-navbar/>

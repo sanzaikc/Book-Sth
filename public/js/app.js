@@ -12882,8 +12882,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\Book-Sth\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\Book-Sth\resources\css\main.css */"./resources/css/main.css");
+__webpack_require__(/*! C:\Users\sanza\Desktop\Laravel\Project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\sanza\Desktop\Laravel\Project\resources\css\main.css */"./resources/css/main.css");
 
 
 /***/ })
