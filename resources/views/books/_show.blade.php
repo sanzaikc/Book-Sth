@@ -61,6 +61,9 @@
                     <span>Hetauda, Hupra</span>
                     <span>2019, May 10</span>
                 </p>
+                <div class="h-64 ">
+                    <img src="https://www.andysowards.com/blog/assets/google-maps-how-to-plan-awesome-vacation.jpg" alt="book" class="object-cover w-full h-full">
+                </div>
             </div>
             <div class="border rounded p-4">
                 <h1 class="text-xl mb-2">Seller Details</h1>
