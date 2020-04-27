@@ -38,6 +38,16 @@
                     <h1 class="text-xl">Description</h1>
                     <p>{{$book->description}}</p>
                 </div>
+                <hr class="my-4" />
+                <div class="">
+                    <h1 class="text-xl">Tags</h1>
+                    <div class="flex flex-wrap py-2">
+                        <span class="inline-block mb-2 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#sci-fi</span>
+                        <span class="inline-block mb-2 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#adventure</span>
+                        <span class="inline-block mb-2 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#action</span>
+                        <span class="inline-block mb-2 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#thrill</span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="ml-4 w-1/3 flex flex-col">
@@ -51,6 +61,9 @@
                     <span>Hetauda, Hupra</span>
                     <span>2019, May 10</span>
                 </p>
+                <div class="h-64 ">
+                    <img src="https://www.andysowards.com/blog/assets/google-maps-how-to-plan-awesome-vacation.jpg" alt="book" class="object-cover w-full h-full">
+                </div>
             </div>
             <div class="border rounded p-4">
                 <h1 class="text-xl mb-2">Seller Details</h1>
