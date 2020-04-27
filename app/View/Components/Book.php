@@ -6,15 +6,15 @@ use Illuminate\View\Component;
 
 class Book extends Component
 {
-    public $img;
+    public $book;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($img)
+    public function __construct($book)
     {
-        $this->img = $img;
+        $this->book = $book;
     }
 
     /**
