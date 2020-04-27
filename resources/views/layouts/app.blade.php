@@ -33,7 +33,6 @@
 
 </head>
 <body class="bg-gray-100">
-    {{-- style="background: linear-gradient(to top, #2980b9, #6dd5fa, #ffffff);" --}}
     <div id="app">
         <x-navbar/>
 
@@ -41,7 +40,7 @@
 {{--            <div class="w-64">--}}
 {{--                @include('_navigation')--}}
 {{--            </div>--}}
-            <div class="mx-4 w-full">
+            <div class="w-full">
                 @yield('content')
             </div>
         </main>
