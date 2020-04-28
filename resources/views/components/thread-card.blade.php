@@ -1,5 +1,4 @@
 <div>
-    @foreach ($threads as $thread)  
     <div class="my-2 p-3 rounded-lg hover:bg-blue-100">
         <div class="flex mb-1" >
             <img src="{{ asset('img/funnyM.jpeg') }}" alt="avatar" class="border-2 border-blue-500 rounded-full w-10 h-10" >
@@ -28,5 +27,4 @@
         </div>
     </div>
     <hr>
-    @endforeach
 </div>

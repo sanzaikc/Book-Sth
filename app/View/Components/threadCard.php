@@ -12,11 +12,11 @@ class threadCard extends Component
      * @return void
      */
 
-    public $threads;
+    public $thread;
 
-    public function __construct($threads)
+    public function __construct($thread)
     {
-        $this->threads = $threads;
+        $this->thread = $thread;
     }
 
     /**

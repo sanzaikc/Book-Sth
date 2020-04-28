@@ -71,7 +71,10 @@
            <div class="px-3 py-3 bg-white shadow-md">
                {{-- all threads  --}}
                 <div x-show="tab === 'all'">
-                    <x-thread-card :threads="$threads" />
+
+                    @foreach ($threads as $thread)  
+                        <x-thread-card :thread="$thread" />
+                    @endforeach
 
                      <div class="flex justify-center mt-4">
                         {{ $threads->links() }}
@@ -84,7 +87,11 @@
                       @if ( auth()->user()->threads->isEmpty() )
                           You havenot started any threads, yet!
                       @else
-                        <x-thread-card :threads="auth()->user()->threads" />   
+
+                        @foreach (auth()->user()->threads as $thread)  
+                            <x-thread-card :thread="$thread" />   
+                        @endforeach
+
                       @endif
                     @else
                         <div class="flex flex-col justify-center items-center p-4 rounded-lg">

@@ -1,4 +1,4 @@
-<nav class="sticky top-0 bg-white border-b py-1">
+<nav class="sticky top-0 bg-white border-b py-1 z-10">
     <div class="container mx-auto">
         <ul class="h-12 flex items-center">
             <li class="mr-auto">
