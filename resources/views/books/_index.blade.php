@@ -17,11 +17,14 @@
                 style="background-color: rgba(0, 0, 0, .5);"
                 class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg z-50"
             >
-                <div class="container mx-auto rounded-lg">
-                    <div class="bg-white rounded p-2">
+                <div class="container mx-auto rounded-lg ">
+                    <div class="bg-white rounded p-4">
                         <div class="flex justify-between">
                             <h2 class="text-2xl font-semibold mb-2">Post Book</h2>  
                             <button x-on:click="postModal = false"> X </button>
+                        </div>
+                        <div>
+                            {{-- form content  --}}
                         </div>
                     </div>
                 </div>

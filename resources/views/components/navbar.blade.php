@@ -6,6 +6,19 @@
                     Bookish
                 </a>
             </li>
+
+            <div class="mr-4 flex">
+                <li class="ml-4">
+                    <a class="text-gray-600 hover:underline" href="{{ url('/home') }}">Home</a>
+                </li>
+                <li class="ml-4">
+                    <a class="text-gray-600 hover:underline" href="{{ url('/books') }}">Books</a>
+                </li>
+                <li class="ml-4">
+                    <a class="text-gray-600 hover:underline" href="{{ url('/threads') }}">Forum</a>
+                </li>
+            </div>
+
             <!-- Authentication Links -->
             @guest
                 <li>
@@ -17,15 +30,6 @@
                     </li>
                 @endif
             @else
-                <li class="ml-4">
-                    <a class="text-gray-600 hover:underline" href="{{ url('/home') }}">Home</a>
-                </li>
-                <li class="ml-4">
-                    <a class="text-gray-600 hover:underline" href="{{ url('/books') }}">Books</a>
-                </li>
-                <li class="ml-4">
-                    <a class="text-gray-600 hover:underline" href="{{ url('/threads') }}">Forum</a>
-                </li>
                 <div class="ml-4 dropdown inline-block relative">
                     <button class="text-gray-700 font-semibold inline-flex items-center focus:outline-none">
                         <span class="mr-1">{{ Auth::user()->name }}</span>
@@ -44,7 +48,6 @@
                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
