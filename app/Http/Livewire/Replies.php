@@ -18,19 +18,19 @@ class Replies extends Component
         $this->replies = Reply::where('thread_id', $threadId)->get();
     }
 
-    public function save()
+    public function add()
     {
-    //    $newCreated= Reply::create([
-    //         'user_id' => auth()->id(),
-    //         'thread_id' => $this->threadId ,
-    //         'body' => $this->newReply
-    //     ]);
-        // array_unshift($this->replies, $newCreated);
-        // $this->newReply = "";
-        dd($this->newReply);
+        $this->validate(['newReply' =>'required|max:255']);
+        $newCreated= Reply::create([
+            'user_id' => auth()->id(),
+            'thread_id' => $this->threadId ,
+            'body' => $this->newReply
+            ]);
+        $this->replies->prepend($newCreated);
+        $this->newReply = "";
     }
 
-    public function deleteReply($replyId)
+    public function remove($replyId)
     {
         $reply = Reply::find($replyId);
         $reply->delete();

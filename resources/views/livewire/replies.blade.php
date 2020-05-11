@@ -1,5 +1,5 @@
-<div class="mt-12" x-data="{ replySection: false }">
-    <d class="flex items-center">
+<div class="my-2" x-data="{ replySection: false }">
+    <div class="flex items-center my-2">
         <h2 class="font-semibold"> {{ $replies->count() }} {{ Str::plural('reply', $replies->count()) }} </h2>
         {{-- leave a reply  --}}
         <div class="flex items-center">
@@ -19,14 +19,12 @@
             @endif  
         </div> 
     </div>
-
     {{-- reply form  --}}
-    <div class="my-3" x-show="replySection">
-        <form wire:submit.prevent="save" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
-            {{ $newReply }}
+    <div class="my-3" x-show="replySection" @click.away="replySection = false">
+        <form wire:submit.prevent="add" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
             <input 
                 type="text" 
-                wire:model="newReply"
+                wire:model.lazy="newReply"
                 class="w-full rounded-lg mt-2 p-4" 
                 placeholder="State your mind.."
             >
@@ -88,7 +86,7 @@
                                     title="Delete reply"
                                     class="text-red-500 transform hover:scale-110 hover:text-red-500 transition-ease-in duration-150"
                                     {{-- onclick="confirm('Are you sure you want to delete?')" --}}
-                                    wire:click="deleteReply( {{ $reply->id }} )"
+                                    wire:click="remove( {{ $reply->id }} )"
                                     > 
                                     <span class="flaticon-trash ml-3"></span>
                                 </button>
