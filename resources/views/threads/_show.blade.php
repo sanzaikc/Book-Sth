@@ -83,10 +83,8 @@
             <span class="ml-2 font-semibold "> {{ $thread->vote_count }} {{ Str::plural('like', $thread->vote_count) }} </span>
 
         </div>
-
-        {{-- @include('replies._index') --}}
-                @livewire('replies', ['threadId' => $thread->id])
-
+        
+        @livewire('replies', ['threadId' => $thread->id])
 
     </div>
     

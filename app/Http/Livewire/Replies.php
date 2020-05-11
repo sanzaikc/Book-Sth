@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class Replies extends Component
 {   
     public $replies = [];
-    public $newReply;
+    public $reply;
     public $threadId;
 
     public function mount($threadId){
@@ -20,14 +20,14 @@ class Replies extends Component
 
     public function add()
     {
-        $this->validate(['newReply' =>'required|max:255']);
+        $this->validate(['reply' =>'required|max:255']);
         $newCreated= Reply::create([
             'user_id' => auth()->id(),
             'thread_id' => $this->threadId ,
-            'body' => $this->newReply
+            'body' => $this->reply
             ]);
         $this->replies->prepend($newCreated);
-        $this->newReply = "";
+        $this->reply = "";
     }
 
     public function remove($replyId)

@@ -24,23 +24,11 @@
         <form wire:submit.prevent="add" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
             <input 
                 type="text" 
-                wire:model.lazy="newReply"
+                wire:model.lazy="reply"
                 class="w-full rounded-lg mt-2 p-4" 
                 placeholder="State your mind.."
             >
-            <div class="mt-2 text-sm">
-                <button 
-                    type="button" 
-                    class="bg-white rounded-full focus:outline-none px-3 py-1 shadow-sm hover:bg-gray-400" 
-                    x-on:click="replySection = false"
-                    > Cancel 
-                </button>
-                <button 
-                    type="submit"
-                    class="bg-blue-500 rounded-full text-white  focus:outline-none ml-2 shadow-sm px-3 py-1  hover:bg-blue-400"
-                    > Submit 
-                </button>
-            </div>
+            @error('reply') <span class="text-red-400">{{ $message }}</span> @enderror
         </form>
     </div>
 
