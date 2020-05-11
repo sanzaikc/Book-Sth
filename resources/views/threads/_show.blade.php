@@ -4,7 +4,7 @@
     <div class="bg-white rounded-lg px-4 py-8 shadow-md">
 
         {{-- thread section --}}
-        <div class="thread" x-data="{ replySection: false , editModal: false }">
+        <div class="thread" x-data="{ editModal: false }">
             <div class="">
                 <h2 class="font-semibold text-3xl"> {{ $thread->title }} </h2>
             </div>
@@ -78,51 +78,15 @@
             </div>
 
             <p class="mt-6 p-2 text-xl rounded bg-gray-100 "> {{ $thread->body }} </p>
-
-            {{-- leave a reply  --}}
-            <div class="flex items-center mt-6">
-                <span class="flaticon-like text-blue-500"></span>
-                <span class="ml-2 font-semibold "> {{ $thread->vote_count }} {{ Str::plural('like', $thread->vote_count) }} </span>
-                @if (auth()->user())
-                    <button 
-                        type="button" 
-                        class="ml-3 bg-blue-500 rounded-full text-white focus:outline-none shadow-sm px-3 py-1 hover:bg-blue-400"
-                        x-on:click="replySection = true"
-                        > Leave a reply
-                    </button>
-                @else
-                    <a 
-                        href="{{ route('login') }}" 
-                        class="ml-3 bg-blue-500 rounded-full text-white focus:outline-none shadow-sm px-3 py-1 hover:bg-blue-400 hover:no-underline"
-                        >Sign in to reply
-                    </a>     
-                @endif  
-            </div> 
-
-            {{-- reply form  --}}
-            <div class="mt-3" x-show="replySection">
-                <form action=" {{ route('threads.replies.store', $thread) }} " method="post" class="flex flex-col items-end bg-gray-200 rounded-lg p-2">
-                    @csrf
-                    <textarea name="body" class="w-full rounded-lg mt-2 p-4" placeholder="State your mind.."></textarea>
-                    <div class="mt-2 text-sm">
-                        <button 
-                            type="button" 
-                            class="bg-white rounded-full focus:outline-none px-3 py-1 shadow-sm hover:bg-gray-400" 
-                            x-on:click="replySection = false"
-                            > Cancel 
-                        </button>
-                        <button 
-                            type="submit" 
-                            class="bg-blue-500 rounded-full text-white  focus:outline-none ml-2 shadow-sm px-3 py-1  hover:bg-blue-400"
-                            > Submit 
-                        </button>
-                    </div>
-                </form>
-            </div>
+    
+            <span class="flaticon-like text-blue-500"></span>
+            <span class="ml-2 font-semibold "> {{ $thread->vote_count }} {{ Str::plural('like', $thread->vote_count) }} </span>
 
         </div>
 
-        @include('replies._index')
+        {{-- @include('replies._index') --}}
+                @livewire('replies', ['threadId' => $thread->id])
+
 
     </div>
     
